@@ -181,19 +181,19 @@ async def main():
         async for event in app.astream(inputs, config=config):
             for k, v in event.items():
                 if k != "__end__":
-                    st.markdown(f"Value: {v}, Type of Value: {type(v)}")
+                    #st.markdown(f"Value: {v}, Type of Value: {type(v)}")
         
-                    """
-                    if '\'plan\':' in v:
+                    
+                    if "plan" in v:
                         for step in v["plan"]:
                             st.markdown(f"- {step}")
-                    elif '\'past_steps\':' in v:
+                    elif "past_steps" in v:
                         for step, explanation in v["past_steps"]:
                             st.subheader(step)
                             st.markdown(explanation)
                     else:
                             st.markdown("unknown")
-                    """
+                    
 
                     
 # Run the main function
