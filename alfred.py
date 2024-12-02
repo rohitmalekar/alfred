@@ -181,6 +181,8 @@ async def main():
         async for event in app.astream(inputs, config=config):
             for k, v in event.items():
                 if k != "__end__":
+                    st.markdown(v)     
+                    """
                     if '\'plan\':' in v:
                         for step in v["plan"]:
                             st.markdown(f"- {step}")
@@ -190,6 +192,8 @@ async def main():
                             st.markdown(explanation)
                     else:
                             st.markdown("unknown")
+                    """
+
                     
 # Run the main function
 if __name__ == "__main__":
