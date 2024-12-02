@@ -169,7 +169,7 @@ app = workflow.compile()
 
 async def main():
 
-    user_input = st.text_input("Enter your objective:", "I want to create a bounty for creating content to raise awareness for local environment issues")
+    user_input = st.text_input("What bounty would you like to design?")
     # Check if the user has entered input
     if user_input:
         # Use the user input in your application
@@ -180,12 +180,11 @@ async def main():
 
         async for event in app.astream(inputs, config=config):
             for k, v in event.items():
-                if k != "__end__":
-                    #st.markdown(f"Value: {v}, Type of Value: {type(v)}")
-        
+                if k != "__end__":                    
                     
                     if "plan" in v:
                         for step in v["plan"]:
+                            st.subheader("Plan to Execute:")
                             st.markdown(f"- {step}")
                     elif "past_steps" in v:
                         for step, explanation in v["past_steps"]:
