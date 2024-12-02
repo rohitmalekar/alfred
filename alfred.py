@@ -183,8 +183,8 @@ async def main():
                 if k != "__end__":                    
                     
                     if "plan" in v:
-                        for step in v["plan"]:
-                            st.subheader("Plan to Execute:")
+                        st.subheader("Plan to Execute:")
+                        for step in v["plan"]:                            
                             st.markdown(f"- {step}")
                     elif "past_steps" in v:
                         for step, explanation in v["past_steps"]:
