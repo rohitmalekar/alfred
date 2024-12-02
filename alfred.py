@@ -184,10 +184,12 @@ async def main():
                     if '\'plan\':' in v:
                         for step in v["plan"]:
                             st.markdown(f"- {step}")
-                    else:
+                    elif '\'past_steps\':' in v:
                         for step, explanation in v["past_steps"]:
                             st.subheader(step)
                             st.markdown(explanation)
+                    else:
+                            st.markdown("unknown")
                     
 # Run the main function
 if __name__ == "__main__":
