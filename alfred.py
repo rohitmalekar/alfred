@@ -53,8 +53,7 @@ planner_prompt = ChatPromptTemplate.from_messages(
         (
             "system",
             """For the given objective for creating a bounty, come up with a simple step by step plan. \
-Keep it limited to 4 to 6 steps. \            
-The plan should focus defining clear objectives, stakeholder engagement, measurable outputs, bounty structure, and defining funding needs. \
+Keep it limited to 4 to 6 steps. The bounty should be well-defined, time-bound, practical, measurable, engaging and impactful.
 This plan should involve individual tasks, that if executed correctly will yield the correct answer. Do not add any superfluous steps. \
 The result of the final step should be the final answer. Make sure that each step has all the information needed - do not skip steps.""",
         ),
