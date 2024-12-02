@@ -181,7 +181,8 @@ async def main():
         async for event in app.astream(inputs, config=config):
             for k, v in event.items():
                 if k != "__end__":
-                    st.markdown(v)     
+                    st.markdown(f"Value: {v}, Type of Value: {type(v)}")
+        
                     """
                     if '\'plan\':' in v:
                         for step in v["plan"]:
