@@ -182,10 +182,10 @@ async def main():
             for k, v in event.items():
                 if k != "__end__":
                     if '\'plan\':' in v:
-                        for step in v['plan']:
+                        for step in v["plan"]:
                             st.markdown(f"- {step}")
                     else:
-                        for step, explanation in v['past_steps']:
+                        for step, explanation in v["past_steps"]:
                             st.subheader(step)
                             st.markdown(explanation)
                     
