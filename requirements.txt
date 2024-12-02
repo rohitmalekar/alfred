@@ -6,3 +6,4 @@ langchain-core
 langgraph
 pydantic
 typing-extensions
+langchain-community
