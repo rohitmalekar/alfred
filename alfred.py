@@ -52,7 +52,7 @@ planner_prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            """For the given objective for creating a bounty, come up with a simple step by step plan. \
+            """You are an expert in designing bounties. For the given funding objective for creating a bounty, come up with a simple step by step plan. \
 Keep it limited to 4 to 6 steps. The bounty should be well-defined, time-bound, practical, measurable, engaging and impactful.
 This plan should involve individual tasks, that if executed correctly will yield the correct answer. Do not add any superfluous steps. \
 The result of the final step should be the final answer. Make sure that each step has all the information needed - do not skip steps.""",
@@ -170,7 +170,7 @@ app = workflow.compile()
 
 async def main():
 
-    user_input = st.text_input("What bounty would you like to design?")
+    user_input = st.text_input("What would you like to fund?")
     # Check if the user has entered input
     if user_input:
         # Use the user input in your application
