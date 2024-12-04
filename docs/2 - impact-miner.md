@@ -6,4 +6,4 @@ Who will benefit?
 2. Sustainability Organizations and Green Gig Workers: These groups gain easier access to funding while reducing the costs and barriers traditionally associated with securing financial support.
 3. Local Communities: Communities involved in climate action projects will see more funding reach the ground level where it is most needed, fostering scalable and impactful climate actions.
 
-![[images/GdeO86KXAAAVy_j.jpeg|300]]
+[[https://github.com/AtlantisDAO1/Alfred/blob/main/docs/images/GdeO86KXAAAVy_j.jpeg|300]]
