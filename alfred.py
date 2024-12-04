@@ -15,6 +15,7 @@ from langgraph.graph import END
 from langgraph.graph import StateGraph, START
 import asyncio
 import streamlit as st
+from langgraph.checkpoint.memory import MemorySaver
 
 
 def _set_env(var: str):
@@ -163,10 +164,11 @@ workflow.add_conditional_edges(
     ["agent", END],
 )
 
-# Finally, we compile it!
-# This compiles it into a LangChain Runnable,
-# meaning you can use it as you would any other runnable
-app = workflow.compile()
+# Set up memory for checkpointing
+memory = MemorySaver()
+
+# Compile the workflow with a breakpoint before the "agent" node
+app = workflow.compile(checkpointer=memory, interrupt_before=["agent"])
 
 async def main():
 
@@ -209,23 +211,24 @@ async def main():
         # Example configuration
         config = {"recursion_limit": 50}
 
-        async for event in app.astream(inputs, config=config):
-            for k, v in event.items():
-                if k != "__end__":                    
-                    
-                    if "plan" in v:
-                        st.markdown("# Remaining Plan to Execute:")
-                        for step in v["plan"]:                            
-                            st.markdown(f"- {step}")
-                    elif "past_steps" in v:
-                        for step, explanation in v["past_steps"]:
-                            st.subheader(step)
-                            st.markdown(explanation)
-                    else:
-                            st.markdown("unknown")
-                    
+        # Example of running the graph until the breakpoint
+        initial_input = {"input": "Your initial input here"}
+        thread = {"configurable": {"thread_id": "1"}}
 
-                    
+        # Run the graph until the first interruption
+        for event in app.stream(initial_input, thread, stream_mode="values"):
+            print(event)
+
+        # Wait for user approval to continue
+        user_approval = input("Do you want to continue to the next step? (yes/no): ")
+
+        if user_approval.lower() == "yes":
+            # If approved, continue the graph execution
+            for event in app.stream(None, thread, stream_mode="values"):
+                print(event)
+        else:
+            print("Operation cancelled by user.")
+
 # Run the main function
 if __name__ == "__main__":
     asyncio.run(main())
