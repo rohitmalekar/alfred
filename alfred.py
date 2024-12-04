@@ -180,9 +180,9 @@ async def main():
 
     # Define scenarios
     scenarios = {
-        "Bounty for implementing rainwater harvesting in rural areas.": "Scenario 1",
-        "Reward for compiling list of local waste management solutions.": "Scenario 2",
-        "Incentivize content creators to produce videos on sustainable living.": "Scenario 3"
+        "Bounty for implementing rainwater harvesting in rural areas.",
+        "Reward for compiling list of local waste management solutions.",
+        "Incentivize content creators to produce videos on sustainable living."
     }
 
     # Initialize the session state for the selected scenario
