@@ -6,12 +6,12 @@ By making Alfred accessible, we aim to foster a global community dedicated to im
 We’re excited to have you join us in shaping Alfred into a powerful tool for climate and sustainability solutions. As we test our MVP (v0), your feedback and contributions are critical to its evolution. Whether you’re a developer, designer, researcher, or just someone passionate about climate action, there’s a way for you to contribute.
 
 **Running Locally**
-1. Clone the repository:
-    `git clone https://github.com/AtlantisDAO1/Alfred.git 
-    `cd Alfred
+1. Clone the repository: 
+    `git clone https://github.com/AtlantisDAO1/Alfred.git` 
+    `cd Alfred`
 2. Install dependencies and run the application:
-    `pip install -r requirements.txt 
-    `streamlit run ./app/Alfred.py
+    `pip install -r requirements.txt`
+    `streamlit run ./app/Alfred.py`
 3. Open your browser and navigate to `http://localhost:8501`.
 
 **Deploying the App on Streamlit Cloud**
