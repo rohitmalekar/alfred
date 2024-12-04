@@ -178,8 +178,29 @@ async def main():
     st.markdown("Check out the [Github Repo](https://github.com/AtlantisDAO1/Alfred) for more context on the motivation for this project and upcoming improvements to v0. \
     [Click here](https://github.com/AtlantisDAO1/Alfred/issues) to provide feedback or report an issue.")
 
+    # Define scenarios
+    scenarios = {
+        "Fund a clean water project in rural areas.": "Scenario 1",
+        "Support renewable energy initiatives in urban settings.": "Scenario 2",
+        "Promote waste management solutions in local communities.": "Scenario 3"
+    }
 
-    user_input = st.text_input("What would you like to fund?")
+    # Initialize the session state for the selected scenario
+    if 'selected_scenario' not in st.session_state:
+        st.session_state.selected_scenario = ""
+
+    # Display hyperlinks for each scenario
+    st.markdown("### Select a Scenario")
+    for scenario_text, scenario_name in scenarios.items():
+        if st.button(scenario_name):
+            st.session_state.selected_scenario = scenario_text
+
+    # Text input box
+    user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
+
+    # Display the selected input
+    st.write("You selected:", user_input)
+
     # Check if the user has entered input
     if user_input:
         # Use the user input in your application
