@@ -6,22 +6,22 @@ At its core, Alfred leverages **Agentic AI** to transform the traditionally manu
 Whether it’s breaking down ambitious aspirations into actionable milestones, crafting well-defined and scoped objectives, or ensuring alignment with local priorities, Alfred provides the tools and guidance necessary to design bounties that deliver tangible results. Through a combination of real-time nudges, iterative feedback loops, and a rich knowledge base, Alfred not only simplifies bounty creation but also enhances its quality, ensuring that every effort contributes to measurable climate impact.
 
 ```mermaid
-graph TD
-    InputLayer["Input Layer"]
-    PlanningAgent["Planning Agent"]
-    ExecutionAgent["Execution Agent"]
-    FeedbackIteration["Feedback & Iteration Module"]
-    KnowledgeBase["Knowledge Base & AI Models"]
-    OutputLayer["Output Layer"]
+graph TD;
+    InputLayer["Input Layer"];
+    PlanningAgent["Planning Agent"];
+    ExecutionAgent["Execution Agent"];
+    FeedbackIteration["Feedback & Iteration Module"];
+    KnowledgeBase["Knowledge Base & AI Models"];
+    OutputLayer["Output Layer"];
     
-    InputLayer --> PlanningAgent
-    PlanningAgent --> ExecutionAgent
-    ExecutionAgent --> FeedbackIteration
-    FeedbackIteration --> PlanningAgent
-    ExecutionAgent --> OutputLayer
-    PlanningAgent --> KnowledgeBase
-    ExecutionAgent --> KnowledgeBase
-    FeedbackIteration --> KnowledgeBase
+    InputLayer --> PlanningAgent;
+    PlanningAgent --> ExecutionAgent;
+    ExecutionAgent --> FeedbackIteration;
+    FeedbackIteration --> PlanningAgent;
+    ExecutionAgent --> OutputLayer;
+    PlanningAgent --> KnowledgeBase;
+    ExecutionAgent --> KnowledgeBase;
+    FeedbackIteration --> KnowledgeBase;
 ```
 
 
