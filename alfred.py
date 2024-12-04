@@ -179,25 +179,24 @@ async def main():
     [Click here](https://github.com/AtlantisDAO1/Alfred/issues) to provide feedback or report an issue.")
 
     # Define scenarios
-    scenarios = {
-        "Bounty for implementing rainwater harvesting in rural areas.",
-        "Reward for compiling list of local waste management solutions.",
-        "Incentivize content creators to produce videos on sustainable living."
-    }
+    scenarios = [
+        "Fund a clean water project in rural areas.",
+        "Support renewable energy initiatives in urban settings.",
+        "Promote waste management solutions in local communities."
+    ]
 
     # Initialize the session state for the selected scenario
     if 'selected_scenario' not in st.session_state:
         st.session_state.selected_scenario = ""
 
-    # Display hyperlinks for each scenario
-    st.markdown("Select one of the following scenarios to get started or enter your own funding objective.")
-    for scenario_text in scenarios.items():
+    # Display clickable text for each scenario
+    st.markdown("### Select a Scenario")
+    for scenario_text in scenarios:
         if st.button(scenario_text):
             st.session_state.selected_scenario = scenario_text
 
     # Text input box
-    st.markdown("What would you like to fund?")
-    user_input = st.text_input("", st.session_state.selected_scenario)
+    user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
 
     # Display the selected input
     st.write("You selected:", user_input)
