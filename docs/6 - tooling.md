@@ -1,5 +1,5 @@
 ### Tooling - LangGraph as an Orchestration Engine
-Alfred utilizes **LangGraph**, an advanced orchestration framework, to construct stateful, multi-agent workflows that enhance the bounty creation process. LangGraph offers several key features that align with Alfred's objectives:
+Alfred utilizes [LangGraph](https://langchain-ai.github.io/langgraph/), an advanced orchestration framework, to construct stateful, multi-agent workflows that enhance the bounty creation process. LangGraph offers several key features that align with Alfred's objectives:
 1. **Cycles and Branching**: LangGraph supports complex control flows, including loops and conditionals, essential for dynamic and responsive agent behaviors.
 2. **Persistence**: The framework automatically saves the state after each step, enabling Alfred to pause and resume processes seamlessly. This persistence is crucial for error recovery, human-in-the-loop interactions, and maintaining continuity in long-running tasks.
 3. **Human-in-the-Loop Integration**: LangGraph allows interruptions in the execution flow for human approvals or edits, ensuring that critical decisions can incorporate human judgment, thereby enhancing the quality and relevance of the bounties designed.
