@@ -1,0 +1,9 @@
+streamlit
+langchain
+openai
+langchain-openai
+langchain-core
+langgraph
+pydantic
+typing-extensions
+langchain-community
