@@ -1,0 +1,7 @@
+[theme]
+base="dark"
+primaryColor="#00b39f"  # A bright teal to match the accent color in the image.
+backgroundColor="#000000"  # Pure black background for a sleek look.
+secondaryBackgroundColor="#111111"  # Slightly lighter black for contrast.
+textColor="#ffffff"  # White text for high readability.
+font="sans serif"  # Clean and modern font style.
