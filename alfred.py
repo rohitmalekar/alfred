@@ -180,9 +180,9 @@ async def main():
 
     # Define scenarios
     scenarios = [
-        "Fund a clean water project in rural areas.",
-        "Support renewable energy initiatives in urban settings.",
-        "Promote waste management solutions in local communities."
+        "Create a bounty for surface runoff rainwater harvesting in Bangalore.",
+        "Reward content creators for raising awareness on air quality in urban areas.",
+        "Incentivize volunteers promoting waste management solutions in local communities."
     ]
 
     # Initialize the session state for the selected scenario
@@ -190,16 +190,13 @@ async def main():
         st.session_state.selected_scenario = ""
 
     # Display clickable text for each scenario
-    st.markdown("Select a scenario from following examples or enter your own")
+    st.markdown("Select a scenario from following examples or enter your own. The tool will create an initial plan and suggest best practices for execution.")
     for scenario_text in scenarios:
         if st.button(scenario_text):
             st.session_state.selected_scenario = scenario_text
 
     # Text input box
     user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
-
-    # Display the selected input
-    st.write("You selected:", user_input)
 
     # Check if the user has entered input
     if user_input:
