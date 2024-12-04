@@ -11,7 +11,7 @@ We’re excited to have you join us in shaping Alfred into a powerful tool for c
     `cd Alfred`
 2. Install dependencies and run the application:
     `pip install -r requirements.txt`
-    `streamlit run ./app/Alfred.py`
+    `streamlit run ./app/alfred.py`
 3. Open your browser and navigate to `http://localhost:8501`.
 
 **Deploying the App on Streamlit Cloud**
