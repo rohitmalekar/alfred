@@ -170,12 +170,13 @@ app = workflow.compile()
 
 async def main():
 
-    st.markdown("# Welcome to Alfred (v0) by Atlantis")
+    st.markdown("# Welcome to Alfred by Atlantis")
     st.markdown("Alfred is your AI-powered assistant for designing impactful bounties in climate and sustainability. \
     Whether you’re funding clean water projects, renewable energy initiatives, or waste management solutions, \
     Alfred helps you create actionable plans that drive real-world results. Simply tell Alfred your funding objective, \
     and it will guide you through the process of creating, executing, and refining a step-by-step plan.")
-    st.markdown("Check out the [Github Repo](https://github.com/AtlantisDAO1/Alfred) for more context on the motivation for this project and upcoming improvements to v0.")
+    st.markdown("Check out the [Github Repo](https://github.com/AtlantisDAO1/Alfred) for more context on the motivation for this project and upcoming improvements to v0. \
+    [Click here](https://github.com/AtlantisDAO1/Alfred/issues) to provide feedback or report an issue.")
 
 
     user_input = st.text_input("What would you like to fund?")
