@@ -98,11 +98,12 @@ We’re excited to have you join us in shaping Alfred into a powerful tool for c
 
 **Running Locally**
 1. Clone the repository:
-    `git clone https://github.com/AtlantisDAO1/Alfred.git 
-    `cd Alfred
+    `git clone https://github.com/AtlantisDAO1/Alfred.git` 
+    `cd Alfred`
 2. Install dependencies and run the application:
-    `pip install -r requirements.txt streamlit run app.py`
-3. Open your browser and navigate to `http://localhost:8501`.
+     `pip install -r requirements.txt`
+     `streamlit run ./app/Alfred.py`
+4. Open your browser and navigate to `http://localhost:8501`.
 
 **Deploying the App on Streamlit Cloud**
 1. Log in to Streamlit Cloud.
