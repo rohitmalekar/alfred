@@ -1,3 +1,5 @@
+[Link](./docs/motivation.md)
+
 # Alfred
 Alfred is an AI agent designed to help humans take effective climate action and thrive in a world with rising climate shocks. We conceptualized Alfred in 2019 as a virtual assistant inspired by the likes of Jarvis and Batman's butler Alfred. The perfect side kick for a hero fighting climate change. We initially started developing Alfred to be helpful for the members of Atlantis network, it made more sense to share with the rest of the world and help every other public goods hero out there. WAGMI!  
 
