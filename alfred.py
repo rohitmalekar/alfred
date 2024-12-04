@@ -170,65 +170,25 @@ memory = MemorySaver()
 # Compile the workflow with a breakpoint before the "agent" node
 app = workflow.compile(checkpointer=memory, interrupt_before=["agent"])
 
-async def main():
+# Example of running the graph until the breakpoint
+async def run_workflow():
+    initial_input = {"input": "Your initial input here"}
+    thread = {"configurable": {"thread_id": "1"}}
 
-    st.markdown("# Welcome to Alfred by Atlantis")
-    st.markdown("Alfred v0 is your AI-powered assistant for designing impactful bounties in climate and sustainability. \
-    Whether you’re funding clean water projects, renewable energy initiatives, or waste management solutions, \
-    Alfred helps you create actionable plans that drive real-world results. Simply tell Alfred your funding objective, \
-    and it will guide you through the process of creating, executing, and refining a step-by-step plan.")
-    st.markdown("Check out the [Github Repo](https://github.com/AtlantisDAO1/Alfred) for more context on the motivation for this project and upcoming improvements to v0. \
-    [Click here](https://github.com/AtlantisDAO1/Alfred/issues) to provide feedback or report an issue.")
+    # Run the graph until the first interruption
+    async for event in app.astream(initial_input, thread, stream_mode="values"):
+        print(event)
 
-    # Define scenarios
-    scenarios = [
-        "Fund a clean water project in rural areas.",
-        "Support renewable energy initiatives in urban settings.",
-        "Promote waste management solutions in local communities."
-    ]
+    # Wait for user approval to continue
+    user_approval = input("Do you want to continue to the next step? (yes/no): ")
 
-    # Initialize the session state for the selected scenario
-    if 'selected_scenario' not in st.session_state:
-        st.session_state.selected_scenario = ""
-
-    # Display clickable text for each scenario
-    st.markdown("Select a scenario from following examples or enter your own")
-    for scenario_text in scenarios:
-        if st.button(scenario_text):
-            st.session_state.selected_scenario = scenario_text
-
-    # Text input box
-    user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
-
-    # Display the selected input
-    st.write("You selected:", user_input)
-
-    # Check if the user has entered input
-    if user_input:
-        # Use the user input in your application
-        inputs = {"input": user_input}
-        
-        # Example configuration
-        config = {"recursion_limit": 50}
-
-        # Example of running the graph until the breakpoint
-        initial_input = {"input": "Your initial input here"}
-        thread = {"configurable": {"thread_id": "1"}}
-
-        # Run the graph until the first interruption
-        for event in app.stream(initial_input, thread, stream_mode="values"):
+    if user_approval.lower() == "yes":
+        # If approved, continue the graph execution
+        async for event in app.astream(None, thread, stream_mode="values"):
             print(event)
+    else:
+        print("Operation cancelled by user.")
 
-        # Wait for user approval to continue
-        user_approval = input("Do you want to continue to the next step? (yes/no): ")
-
-        if user_approval.lower() == "yes":
-            # If approved, continue the graph execution
-            for event in app.stream(None, thread, stream_mode="values"):
-                print(event)
-        else:
-            print("Operation cancelled by user.")
-
-# Run the main function
+# Run the asynchronous function
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(run_workflow())
