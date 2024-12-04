@@ -180,9 +180,9 @@ async def main():
 
     # Define scenarios
     scenarios = {
-        "Fund a clean water project in rural areas.": "Scenario 1",
-        "Support renewable energy initiatives in urban settings.": "Scenario 2",
-        "Promote waste management solutions in local communities.": "Scenario 3"
+        "Bounty for implementing rainwater harvesting in rural areas.": "Scenario 1",
+        "Reward for compiling list of local waste management solutions.": "Scenario 2",
+        "Incentivize content creators to produce videos on sustainable living.": "Scenario 3"
     }
 
     # Initialize the session state for the selected scenario
@@ -190,13 +190,14 @@ async def main():
         st.session_state.selected_scenario = ""
 
     # Display hyperlinks for each scenario
-    st.markdown("### Select a Scenario")
-    for scenario_text, scenario_name in scenarios.items():
-        if st.button(scenario_name):
+    st.markdown("Select one of the following scenarios to get started or enter your own funding objective.")
+    for scenario_text in scenarios.items():
+        if st.button(scenario_text):
             st.session_state.selected_scenario = scenario_text
 
     # Text input box
-    user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
+    st.markdown("What would you like to fund?")
+    user_input = st.text_input("", st.session_state.selected_scenario)
 
     # Display the selected input
     st.write("You selected:", user_input)
