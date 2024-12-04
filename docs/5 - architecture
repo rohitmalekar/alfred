@@ -22,7 +22,6 @@ graph TD;
     PlanningAgent --> KnowledgeBase;
     ExecutionAgent --> KnowledgeBase;
     FeedbackIteration --> KnowledgeBase;
-```
 
 
 - **Input Layer:** Captures local context, funder goals, and user inputs to ensure the bounty is tailored to specific needs.
