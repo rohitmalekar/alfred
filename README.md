@@ -37,19 +37,80 @@ Creating effective bounties is time-consuming, requiring clear scopes, measurabl
 [Read more...](./docs/3%20-%20friction.md)
 
 ### Opportunity - Role of agentic ai in decentralized solutions
+Hands-on workshops for designing bounties are impactful but not scalable. To address diverse community needs at scale, we are leveraging AI-powered workflows to embed best practices, contextual insights, and dynamic decision-making into the bounty creation process.
+Our AI-assisted system will guide funders with:
+- Contextual nudges for defining objectives, scopes, and milestones.
+- Templates and recommendations informed by collective knowledge.
+- A multi-modal assistant offering real-time guidance and seamless interaction.
+This approach lowers barriers, enhances scalability, and empowers stakeholders to create impactful bounties independently, transforming decentralized solutions into catalysts for collective action.
 
+[Read more...](./docs/4%20-%20opportunity.md)
 
 ### Architecture - The ultimate bounty master: alfred
-
+Alfred is an AI-powered assistant designed to simplify and streamline the creation of impactful bounties for climate and sustainability. Built with a modular, multi-agent architecture, Alfred leverages Agentic AI to transform complex, manual processes into an intuitive and scalable experience.
+Key Features:
+- Planning Agent: Breaks aspirations into actionable milestones with measurable goals.
+- Execution Agent: Provides localized, practical solutions to ensure feasibility.
+- Feedback & Iteration: Dynamically refines plans for transparency and adaptability.
+- Knowledge Base: Offers data-driven insights to enhance decision-making.
+  
+[Read more...](./docs/5%20-%20architecture.md)
 
 ### Tooling - Langgraph as an orchestration engine
+Alfred uses LangGraph, a robust orchestration framework, to power its stateful, multi-agent workflows. LangGraph’s key features include:
+- Dynamic Flows: Supports complex logic like loops and conditionals for responsive agent behaviors.
+- State Persistence: Automatically saves progress, enabling seamless pausing, resumption, and error recovery.
+- Human-in-the-Loop: Allows critical interventions and approvals for enhanced decision-making.
+- Real-Time Feedback: Provides streaming outputs for better user engagement and responsiveness.
+- Ecosystem Integration: Works seamlessly with LangChain and LangSmith to leverage diverse tools and models.
+- LangGraph ensures Alfred’s workflows are adaptable, scalable, and optimized for creating effective, measurable bounties.
 
+[Read more...](./docs/6%20-%20tooling.md)
 
 ### Version 0 - Technical notes
+Alfred v0 is our MVP launched for testing and validation with a small group of users.
 
+```mermaid
+graph TD
+    START["Start: User Input"]
+    Planner["Planner: Generates Initial Plan"]
+    Agent["Agent: Executes Steps"]
+    Replan["Replan: Updates Plan"]
+    END["End: Response to User"]
+
+    START --> Planner
+    Planner --> Agent
+    Agent --> Replan
+    Replan --> Agent
+    Replan --> END
+```
+Key Workflow Highlights:
+
+- Planner: Creates step-by-step plans using LLM-powered logic.
+- Agent: Executes steps and processes results.
+- Replan: Dynamically updates plans based on progress.
+- Logic: Adapts workflows using conditional decision-making.
+
+[Read more...](./docs/7%20-%20version0.md)
 
 ### How can you contribute?
+We’re excited to have you join us in shaping Alfred into a powerful tool for climate and sustainability solutions. As we test our MVP (v0), your feedback and contributions are critical to its evolution. Whether you’re a developer, designer, researcher, or just someone passionate about climate action, there’s a way for you to contribute.
 
+**Running Locally**
+1. Clone the repository:
+    `git clone https://github.com/AtlantisDAO1/Alfred.git 
+    `cd Alfred
+2. Install dependencies and run the application:
+    `pip install -r requirements.txt streamlit run app.py`
+3. Open your browser and navigate to `http://localhost:8501`.
 
+**Deploying the App on Streamlit Cloud**
+1. Log in to Streamlit Cloud.
+2. Create a new app and connect it to your GitHub repository.
+3. Add the `OPENAI_API_KEY` and `TAVILY_API_KEY` in the "Secrets" section of the Streamlit Cloud dashboard.
+4. Deploy the app.
 
+Let us know about bugs, errors, or confusing user experiences by raising an issue in our [Github](https://github.com/AtlantisDAO1/Alfred/issues).
+
+[Read more...](./docs/8%20-%20contribute.md)
 
