@@ -171,7 +171,7 @@ app = workflow.compile()
 async def main():
 
     st.markdown("# Welcome to Alfred by Atlantis")
-    st.markdown("Alfred is your AI-powered assistant for designing impactful bounties in climate and sustainability. \
+    st.markdown("Alfred v0 is your AI-powered assistant for designing impactful bounties in climate and sustainability. \
     Whether you’re funding clean water projects, renewable energy initiatives, or waste management solutions, \
     Alfred helps you create actionable plans that drive real-world results. Simply tell Alfred your funding objective, \
     and it will guide you through the process of creating, executing, and refining a step-by-step plan.")
@@ -190,7 +190,7 @@ async def main():
         st.session_state.selected_scenario = ""
 
     # Display clickable text for each scenario
-    st.markdown("### Select a Scenario")
+    st.markdown("Select a scenario from following examples or enter your own")
     for scenario_text in scenarios:
         if st.button(scenario_text):
             st.session_state.selected_scenario = scenario_text
