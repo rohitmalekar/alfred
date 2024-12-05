@@ -1,6 +1,9 @@
 # Alfred: Scaling Local Climate Solutions
 Alfred is an AI-powered assistant designed to create impactful, measurable, and actionable bounties for climate and sustainability initiatives. Built with a modular multi-agent architecture, Alfred simplifies the traditionally manual process of planning, executing, and refining bounties, empowering funders and local communities to drive meaningful change.
 
+[![](https://github.com/AtlantisDAO1/Alfred/blob/main/docs/images/video.png)](https://www.canva.com/design/DAGYZUM2Kfg/l8fzQnn5NRM6sJ5HgfwVOA/watch?utm_content=DAGYZUM2Kfg&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
+
 - [Motivation](#motivation---using-global-rails-for-local-challenges-in-climate-and-sustainability)
 - [Impact Miner](#impact-miner---scaling-impact-of-last-mile-funding)
 - [Friction](#friction---crafting-measurable-high-impact-bounties)
