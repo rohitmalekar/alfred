@@ -36,7 +36,7 @@ Creating effective bounties is time-consuming, requiring clear scopes, measurabl
 
 [Read more...](./docs/3%20-%20friction.md)
 
-### Opportunity - Role of agentic ai in decentralized solutions
+### Opportunity - Role of agentic AI in decentralized solutions
 Hands-on workshops for designing bounties are impactful but not scalable. To address diverse community needs at scale, we are leveraging AI-powered workflows to embed best practices, contextual insights, and dynamic decision-making into the bounty creation process.
 Our AI-assisted system will guide funders with:
 - Contextual nudges for defining objectives, scopes, and milestones.
@@ -46,7 +46,7 @@ This approach lowers barriers, enhances scalability, and empowers stakeholders t
 
 [Read more...](./docs/4%20-%20opportunity.md)
 
-### Architecture - The ultimate bounty master: alfred
+### Architecture - The ultimate bounty master: Alfred
 Alfred is an AI-powered assistant designed to simplify and streamline the creation of impactful bounties for climate and sustainability. Built with a modular, multi-agent architecture, Alfred leverages Agentic AI to transform complex, manual processes into an intuitive and scalable experience.
 Key Features:
 - Planning Agent: Breaks aspirations into actionable milestones with measurable goals.
