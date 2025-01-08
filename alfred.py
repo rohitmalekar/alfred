@@ -1,228 +1,177 @@
-import getpass
-import os
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain import hub
-from langchain_openai import ChatOpenAI
-from langgraph.prebuilt import create_react_agent
-import operator
-from typing import Annotated, List, Tuple
-from typing_extensions import TypedDict
-from pydantic import BaseModel, Field
-from langchain_core.prompts import ChatPromptTemplate
-from typing import Union
-from typing import Literal
-from langgraph.graph import END
-from langgraph.graph import StateGraph, START
-import asyncio
 import streamlit as st
+from langchain.agents import load_tools
+from langchain_openai import ChatOpenAI
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.prebuilt import create_react_agent
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+import os
 
-
-def _set_env(var: str):
-    if not os.environ.get(var):
-        os.environ[var] = getpass.getpass(f"{var}: ")
-
-
-_set_env("OPENAI_API_KEY")
-_set_env("TAVILY_API_KEY")
-
-tools = [TavilySearchResults(max_results=3)]
-
-# Get the prompt to use - you can modify this!
-prompt = hub.pull("ih/ih-react-agent-executor")
-prompt.pretty_print()
-
-# Choose the LLM that will drive the agent
-llm = ChatOpenAI(model="gpt-4-turbo-preview")
-agent_executor = create_react_agent(llm, tools, state_modifier=prompt)
-
-class PlanExecute(TypedDict):
-    input: str
-    plan: List[str]
-    past_steps: Annotated[List[Tuple], operator.add]
-    response: str
-
-class Plan(BaseModel):
-    """Plan to follow in future"""
-
-    steps: List[str] = Field(
-        description="different steps to follow, should be in sorted order"
-    )
-
-planner_prompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            """You are an expert in designing bounties. For the given funding objective for creating a bounty, come up with a simple step by step plan. \
-Keep it limited to 4 to 6 steps. The bounty should be well-defined, time-bound, practical, measurable, engaging and impactful.
-This plan should involve individual tasks, that if executed correctly will yield the correct answer. Do not add any superfluous steps. \
-The result of the final step should be the final answer. Make sure that each step has all the information needed - do not skip steps.""",
-        ),
-        ("placeholder", "{messages}"),
-    ]
-)
-
-planner = planner_prompt | ChatOpenAI(
-    model="gpt-4o", temperature=0
-).with_structured_output(Plan)
-
-
-class Response(BaseModel):
-    """Response to user."""
-
-    response: str
-
-
-class Act(BaseModel):
-    """Action to perform."""
-
-    action: Union[Response, Plan] = Field(
-        description="Action to perform. If you want to respond to user, use Response. "
-        "If you need to further use tools to get the answer, use Plan."
-    )
-
-
-replanner_prompt = ChatPromptTemplate.from_template(
-    """For the given objective, come up with a simple step by step plan. \
-This plan should involve individual tasks, that if executed correctly will yield the correct answer. Do not add any superfluous steps. \
-The result of the final step should be the final answer. Make sure that each step has all the information needed - do not skip steps.
-
-Your objective was this:
-{input}
-
-Your original plan was this:
-{plan}
-
-You have currently done the follow steps:
-{past_steps}
-
-Update your plan accordingly. If no more steps are needed and you can return to the user, then respond with that. Otherwise, fill out the plan. Only add steps to the plan that still NEED to be done. Do not return previously done steps as part of the plan."""
-)
-
-
-replanner = replanner_prompt | ChatOpenAI(
-    model="gpt-4o", temperature=0
-).with_structured_output(Act)
-
-async def execute_step(state: PlanExecute):
-    plan = state["plan"]
-    plan_str = "\n".join(f"{i+1}. {step}" for i, step in enumerate(plan))
-    task = plan[0]
-    task_formatted = f"""For the following plan:
-{plan_str}\n\nYou are tasked with executing step {1}, {task}."""
-    agent_response = await agent_executor.ainvoke(
-        {"messages": [("user", task_formatted)]}
-    )
-    return {
-        "past_steps": [(task, agent_response["messages"][-1].content)],
-    }
-
-
-async def plan_step(state: PlanExecute):
-    plan = await planner.ainvoke({"messages": [("user", state["input"])]})
-    return {"plan": plan.steps}
-
-
-async def replan_step(state: PlanExecute):
-    output = await replanner.ainvoke(state)
-    if isinstance(output.action, Response):
-        return {"response": output.action.response}
-    else:
-        return {"plan": output.action.steps}
-
-
-def should_end(state: PlanExecute):
-    if "response" in state and state["response"]:
-        return END
-    else:
-        return "agent"
+def generate_chat_summary(messages):
+    """Generate structured bounty specification from chat history"""
+    llm = ChatOpenAI(model="gpt-4")
     
+    system_message = SystemMessage(content="""
+    You are a bounty specification generator. Analyze the conversation history and create a structured bounty specification with the following components:
+    1. Bounty Title (max 40 characters)
+    2. Bounty Description (max 1000 characters)
+    3. Criteria List (each max 200 characters)
+       - Eligibility criteria
+       - Evaluation criteria
+       - Terms and conditions
+       - Disclaimers
+    4. Microtasks List - Break down the bounty into specific tasks, including:
+       - Instruction tasks (reading materials, guidelines)
+       - Action tasks (implementations, uploads)
+       - Verification tasks (proof of work, impact data)
+        Design the most relevant microtasks in the context of the conversation history using the following microtask types. Choose the most relevant microtask types for the bounty. You may repeat microtasks if needed.
+        - Ask a question (Create title, question, and answer hint)
+        - Upload a file (Create title, description)
+        - Upload photos (Create title, description)
+        - Upload video (Create title, description)
+        - Quiz Question (Create title, question, and four answer options)
+        - Get Location (Create title, description)
+        - Location embed (Create title, description, city)
+        - Youtube link (Create title, description, link)
+        - Read instructions (Create title, instructional text)
+    5. List key points for successful operation of the bounty for the bounty creator covering crucial details during planning, execution, and verification.
+    Format the output in a clear, structured way using markdown.
+    """)
+    
+    # Prepare the conversation history
+    conversation_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in messages])
+    human_message = HumanMessage(content=f"Generate a bounty specification based on this conversation:\n{conversation_text}")
+    
+    # Get the specification from LLM
+    response = llm.invoke([system_message, human_message])
+    return response.content
 
-workflow = StateGraph(PlanExecute)
+def download_message_history(messages):
+    """Create a formatted text file with summary and full chat history"""
+    # Generate summary
+    summary = generate_chat_summary(messages)
+    
+    with open("bounty_conversation.txt", "w") as file:
+        # Write summary section
+        file.write("=== CONVERSATION SUMMARY ===\n\n")
+        file.write(summary)
+        file.write("\n\n")
+        
+        # Write delimiter
+        file.write("\n" + "="*50 + "\n")
+        
+        # Write full conversation section
+        file.write("\n=== FULL CONVERSATION ===\n\n")
+        for message in messages:
+            file.write(f"{message['role'].upper()}:\n{message['content']}\n\n")
+    
+    return "bounty_conversation.txt"
 
-# Add the plan node
-workflow.add_node("planner", plan_step)
 
-# Add the execution step
-workflow.add_node("agent", execute_step)
+st.set_page_config(layout="wide")
+@st.cache_resource
+def bounty_builder():
+    
+    # Initialize the language model
+    llm = ChatOpenAI(model="gpt-4o")
+    memory = MemorySaver()
 
-# Add a replan node
-workflow.add_node("replan", replan_step)
+    # Load the necessary tools
+    tools = load_tools(["ddg-search"])
 
-workflow.add_edge(START, "planner")
+    prompt = SystemMessage(content="You are an expert assistant specializing in designing decentralized bounties for climate action and sustainability. \
+    Your mission is to help users create impactful and actionable bounty programs that promote environmental sustainability through decentralized initiatives. \
+    Engage actively with users to understand their specific needs and offer tailored, practical guidance step by step. \
+    Be mindful of how much information you share at one go - introduce concepts and steps needed one at a time  \
+    In your responses, include clear examples and actionable suggestions to inspire users and help them refine their bounty ideas. \
+    Encourage feedback by asking users if adjustments are needed or if further clarity is required. \
+    Focus exclusively on questions and discussions related to designing bounties, and politely redirect any unrelated inquiries.")
 
-# From plan we go to agent
-workflow.add_edge("planner", "agent")
 
-# From agent, we replan
-workflow.add_edge("agent", "replan")
+    # Create the agent
+    agent = create_react_agent(llm, tools,  checkpointer=memory, state_modifier=prompt)
 
-workflow.add_conditional_edges(
-    "replan",
-    # Next, we pass in the function that will determine which node is called next.
-    should_end,
-    ["agent", END],
+    return agent
+
+config = {"configurable": {"thread_id": "abc123"}}
+
+st.title("Welcome to Alfred by Atlantis 🌍")
+
+st.markdown("""
+**Alfred v0** is your personal AI-powered assistant, designed to help you create impactful bounties in climate and sustainability. Whether you’re championing clean water initiatives, renewable energy projects, or waste management solutions, Alfred transforms your ideas into actionable plans that drive meaningful change.
+""")
+
+st.markdown("""
+### How to Get Started 🚀
+1. **Share Your Idea**: Start by telling Alfred about the bounty you have in mind. Provide as much detail as possible—your goals, target audience, and any specific requirements or constraints. The more context you give, the better Alfred can assist.
+2. **Ask for Help**: Use Alfred to ask questions, brainstorm ideas, or get feedback on specific aspects of your bounty. Whether you need advice or creative input, Alfred is here to collaborate.
+3. **Refine and Finalize**: Once you’re satisfied with your bounty, click the **"Download Bounty Specifications"** button. Alfred will generate a clear and concise specification based on your conversation history.
+
+### Launch Your Impact 🌱
+Take your refined bounty and share it on platforms like [Atlantis Impact Foundry](https://impactfoundry.atlantisp2p.com/) or other bounty tools. 
+""")
+
+# Add a button to clear the chat history
+if st.button("Clear Chat History"):
+    st.session_state.messages = []
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+
+
+# Initialize session state for download
+if "download_ready" not in st.session_state:
+    st.session_state.download_ready = False
+
+# Add a button to download the message history
+download_button = st.button(
+    "Download Bounty Specifications",
+    key="download_button",
+    disabled=len(st.session_state.messages) == 0,  # Disable if no messages
+    help="Start a conversation first to enable download"
 )
 
-# Finally, we compile it!
-# This compiles it into a LangChain Runnable,
-# meaning you can use it as you would any other runnable
-app = workflow.compile()
-
-async def main():
-
-    st.markdown("# Welcome to Alfred by Atlantis")
-    st.markdown("Alfred v0 is your AI-powered assistant for designing impactful bounties in climate and sustainability. \
-    Whether you’re funding clean water projects, renewable energy initiatives, or waste management solutions, \
-    Alfred helps you create actionable plans that drive real-world results. Simply tell Alfred your funding objective, \
-    and it will guide you through the process of creating, executing, and refining a step-by-step plan.")
-    st.markdown("Check out the [Github Repo](https://github.com/AtlantisDAO1/Alfred) for more context on the motivation for this project and upcoming improvements to v0. \
-    [Click here](https://github.com/AtlantisDAO1/Alfred/issues) to provide feedback or report an issue.")
-
-    # Define scenarios
-    scenarios = [
-        "Create a bounty for surface runoff rainwater harvesting in Bangalore.",
-        "Reward content creators for raising awareness on air quality in urban areas.",
-        "Incentivize volunteers promoting waste management solutions in local communities."
-    ]
-
-    # Initialize the session state for the selected scenario
-    if 'selected_scenario' not in st.session_state:
-        st.session_state.selected_scenario = ""
-
-    # Display clickable text for each scenario
-    st.markdown("Select a scenario from following examples or enter your own. The tool will create an initial plan and suggest best practices for execution.")
-    for scenario_text in scenarios:
-        if st.button(scenario_text):
-            st.session_state.selected_scenario = scenario_text
-
-    # Text input box
-    user_input = st.text_input("What would you like to fund?", st.session_state.selected_scenario)
-
-    # Check if the user has entered input
-    if user_input:
-        # Use the user input in your application
-        inputs = {"input": user_input}
+if download_button:
+    with st.spinner("Generating specs and preparing download..."):
+        message_history = st.session_state.messages
+        file_path = download_message_history(message_history)
+        st.session_state.download_ready = True
+        st.success("✅ Specifications generated successfully!")
         
-        # Example configuration
-        config = {"recursion_limit": 50}
+        # Add download link after generation
+        with open(file_path, "r") as file:
+            st.download_button(
+                label="📥 Download Specifications",
+                data=file.read(),
+                file_name="bounty_specifications.txt",
+                mime="text/plain",
+                key="download_link"
+            )
 
-        async for event in app.astream(inputs, config=config):
-            for k, v in event.items():
-                if k != "__end__":                    
-                    
-                    if "plan" in v:
-                        st.markdown("# Remaining Plan to Execute:")
-                        for step in v["plan"]:                            
-                            st.markdown(f"- {step}")
-                    elif "past_steps" in v:
-                        for step, explanation in v["past_steps"]:
-                            st.subheader(step)
-                            st.markdown(explanation)
-                    else:
-                            st.markdown("unknown")
-                    
 
-                    
-# Run the main function
-if __name__ == "__main__":
-    asyncio.run(main())
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Chat interface code
+if user_prompt := st.chat_input():
+    st.session_state.messages.append({"role": "user", "content": user_prompt})
+    with st.chat_message("user"):
+        st.markdown(user_prompt)
+    
+    input_message = HumanMessage(content=user_prompt)
+        
+    with st.chat_message("assistant"):
+        agent = bounty_builder()
+        # Stream the agent's response
+        for response_stream in agent.stream(
+            {"messages": [input_message]}, config, stream_mode="values"
+        ):
+            display = response_stream["messages"][-1].content
+
+        st.markdown(display)    
+    # Append the assistant's full response to the chat history
+    st.session_state.messages.append({"role": "assistant", "content": display})
+
+
+
