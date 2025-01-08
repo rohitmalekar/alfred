@@ -7,3 +7,4 @@ langgraph
 pydantic
 typing-extensions
 langchain-community
+duckduckgo-search
