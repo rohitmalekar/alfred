@@ -1,0 +1,4 @@
+user: hello
+
+assistant: Hello! How can I assist you today with designing decentralized bounties focused on climate action and sustainability?
+
