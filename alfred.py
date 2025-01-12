@@ -104,7 +104,7 @@ st.markdown("""
 ### How to Get Started 🚀
 1. **Share Your Idea**: Start by telling Alfred about the bounty you have in mind. Provide as much detail as possible—your goals, target audience, and any specific requirements or constraints. The more context you give, the better Alfred can assist.
 2. **Ask for Help**: Use Alfred to ask questions, brainstorm ideas, or get feedback on specific aspects of your bounty. Whether you need advice or creative input, Alfred is here to collaborate.
-3. **Refine and Finalize**: Once you’re satisfied with your bounty, click the **"Download Bounty Specifications"** button. Alfred will generate a clear and concise specification based on your conversation history.
+3. **Refine and Finalize**: Once you’re satisfied with your bounty, click the **"Create Bounty Specifications"** button. Alfred will generate a clear and concise specification based on your conversation history.
 
 ### Launch Your Impact 🌱
 Take your refined bounty and share it on platforms like [Atlantis Impact Foundry](https://impactfoundry.atlantisp2p.com/) or other bounty tools. 
@@ -125,7 +125,7 @@ if "download_ready" not in st.session_state:
 
 # Add a button to download the message history
 download_button = st.button(
-    "Download Bounty Specifications",
+    "Create Bounty Specifications",
     key="download_button",
     disabled=len(st.session_state.messages) == 0,  # Disable if no messages
     help="Start a conversation first to enable download"
@@ -172,6 +172,3 @@ if user_prompt := st.chat_input():
         st.markdown(display)    
     # Append the assistant's full response to the chat history
     st.session_state.messages.append({"role": "assistant", "content": display})
-
-
-
