@@ -4,3 +4,4 @@ langchain-openai
 langgraph
 duckduckgo-search
 openai
+langchain-community
