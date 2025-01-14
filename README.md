@@ -1,8 +1,9 @@
 # Alfred: Scaling Local Climate Solutions
 Alfred is an AI-powered assistant designed to create impactful, measurable, and actionable bounties for climate and sustainability initiatives. Built with a modular multi-agent architecture, Alfred simplifies the traditionally manual process of planning, executing, and refining bounties, empowering funders and local communities to drive meaningful change.
 
-[![](https://github.com/AtlantisDAO1/Alfred/blob/main/docs/images/video.png)](https://www.canva.com/design/DAGYZUM2Kfg/l8fzQnn5NRM6sJ5HgfwVOA/watch?utm_content=DAGYZUM2Kfg&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+> [Access the latest version deployed here](https://alfredv0.streamlit.app/)
 
+See [Paragraph](https://paragraph.xyz/@atlantisp2p) for posts detailing the evolution of Alfred.
 
 - [Motivation](#motivation---using-global-rails-for-local-challenges-in-climate-and-sustainability)
 - [Impact Miner](#impact-miner---scaling-impact-of-last-mile-funding)
@@ -70,31 +71,6 @@ Alfred uses LangGraph, a robust orchestration framework, to power its stateful, 
 
 [Read more...](./docs/6%20-%20tooling.md)
 
-### Version 0 - Technical notes
-Alfred v0 is our MVP launched for testing and validation with a small group of users.
-
-```mermaid
-graph TD
-    START["Start: User Input"]
-    Planner["Planner: Generates Initial Plan"]
-    Agent["Agent: Executes Steps"]
-    Replan["Replan: Updates Plan"]
-    END["End: Response to User"]
-
-    START --> Planner
-    Planner --> Agent
-    Agent --> Replan
-    Replan --> Agent
-    Replan --> END
-```
-Key Workflow Highlights:
-
-- Planner: Creates step-by-step plans using LLM-powered logic.
-- Agent: Executes steps and processes results.
-- Replan: Dynamically updates plans based on progress.
-- Logic: Adapts workflows using conditional decision-making.
-
-[Read more...](./docs/7%20-%20version0.md)
 
 ### How can you contribute?
 We’re excited to have you join us in shaping Alfred into a powerful tool for climate and sustainability solutions. As we test our MVP (v0), your feedback and contributions are critical to its evolution. Whether you’re a developer, designer, researcher, or just someone passionate about climate action, there’s a way for you to contribute.
