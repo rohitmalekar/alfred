@@ -100,7 +100,7 @@ config = {"configurable": {"thread_id": "abc123"}}
 st.title("Welcome to Alfred by Atlantis 🔱")
 
 st.markdown("""
-**Alfred v0** is your personal AI-powered assistant, designed to help you create impactful bounties in climate and sustainability. Whether you’re championing clean water initiatives, renewable energy projects, or waste management solutions, Alfred transforms your ideas into actionable plans that drive meaningful change.
+**Alfred ** is your personal AI-powered assistant, designed to help you create impactful bounties in climate and sustainability. Whether you’re championing clean water initiatives, renewable energy projects, or waste management solutions, Alfred transforms your ideas into actionable plans that drive meaningful change.
 """)
 
 st.markdown("""
