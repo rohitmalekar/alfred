@@ -153,7 +153,8 @@ if download_button:
 
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    avatar = "🔱" if message["role"] == "assistant" else None
+    with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
 # Chat interface code
@@ -164,7 +165,7 @@ if user_prompt := st.chat_input():
     
     input_message = HumanMessage(content=user_prompt)
         
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="🔱"):
         agent = bounty_builder()
         # Stream the agent's response
         for response_stream in agent.stream(
