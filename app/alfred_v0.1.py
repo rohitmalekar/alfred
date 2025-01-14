@@ -5,6 +5,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 import os
+from langchain_community.tools.tavily_search import TavilySearchResults
 
 def generate_chat_summary(messages):
     """Generate structured bounty specification from chat history"""
@@ -76,15 +77,17 @@ def bounty_builder():
     memory = MemorySaver()
 
     # Load the necessary tools
-    tools = load_tools(["ddg-search"])
+    #tools = load_tools(["ddg-search"])
+    tools = [TavilySearchResults(max_results=3)]
 
-    prompt = SystemMessage(content="Your name is Alfred. You are an expert assistant specializing in designing decentralized bounties for climate action and sustainability. \
+    prompt = SystemMessage(content="""Your name is Alfred. You are an expert assistant specializing in designing decentralized bounties for climate action and sustainability. \
     Your mission is to help users create impactful and actionable bounty programs that promote environmental sustainability through decentralized initiatives. \
     Engage actively with users to understand their specific needs and offer tailored, practical guidance step by step. \
     Be mindful of how much information you share at one go - introduce concepts and steps needed one at a time  \
     In your responses, include clear examples and actionable suggestions to inspire users and help them refine their bounty ideas. \
+    When sharing results from TavilySearchResults tool, include the source URL in the response. \                            
     Encourage feedback by asking users if adjustments are needed or if further clarity is required. \
-    Focus exclusively on questions and discussions related to designing bounties, and politely redirect any unrelated inquiries.")
+    Focus exclusively on questions and discussions related to designing bounties, and politely redirect any unrelated inquiries.""")
 
 
     # Create the agent
@@ -168,7 +171,8 @@ if user_prompt := st.chat_input():
             {"messages": [input_message]}, config, stream_mode="values"
         ):
             display = response_stream["messages"][-1].content
-
+            #st.markdown(display)    
+        
         st.markdown(display)    
     # Append the assistant's full response to the chat history
     st.session_state.messages.append({"role": "assistant", "content": display})
