@@ -5,3 +5,4 @@ langgraph
 duckduckgo-search
 openai
 langchain-community
+tavily-python
