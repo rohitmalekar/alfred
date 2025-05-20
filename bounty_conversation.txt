@@ -1,33 +1,45 @@
 === CONVERSATION SUMMARY ===
 
-# Bounty Specification
+Based on your conversation, here is the bounty specification:
 
-Based on the conversation, here is the structured bounty specification:
+**Title:** "Prototyping AI Apps for Public Goods in Bangalore"
 
-- **Title:** "Rainwater Harvesting in Bangalore"
-- **Description:** "This bounty aims to promote the installation of rainwater harvesting systems in residential and commercial properties in Bangalore. We reward both new installations and existing implementations. The objective is to install 100 new systems and document 100 existing implementations by the end of the year."
-- **Bounty Type:** "Harvesting"
-- **Dominant Impact Core:** "Water"
-- **Bounty Mode:** "Physical"
-- **Max Attempts:** "1"
+**Description:** 
+This bounty calls for developers, data scientists, and innovators to prototype AI applications that serve public goods in Bangalore. The objective is to encourage the development of solutions addressing challenges such as environmental sustainability, urban planning, or public health. Examples of use cases include AI-powered pollution monitoring, optimizing public transportation routes, or managing waste and recycling efficiently. 
 
-## Completion Criteria
-- Installation must comply with local government regulations.
-- Provide photographic evidence and installation receipts.
-- Systems must have a minimum storage capacity of 1000 liters.
-- Existing implementations must provide proof through photographs, installation documents, or a site visit by a designated verifier.
+**Bounty Type:** "Code"
 
-## Microtasks
-1. **Reading Instruction:** "Understand the importance of rainwater harvesting and how to install a system."
-2. **Upload Photo:** "Upload photos of your newly installed or existing rainwater harvesting system."
-3. **Upload File:** "Upload the installation receipts or any proof of existing implementation."
+**Dominant Impact Core:** "Social"
 
-## Microtask Placement
-- Start with "Reading Instruction" to provide context and knowledge.
-- Follow with "Upload Photo" to document the implementation.
-- Finish with "Upload File" to submit supporting documents.
+**Bounty Mode:** "Digital"
 
-The bounty includes a $10 reward for each verified existing system, and participants include homeowners, businesses, and organizations in Bangalore. The bounty will be promoted on social media and local community platforms to ensure a broad reach.
+**Max Attempts:** 3
+
+**Completion Criteria:**
+
+1. Demonstrate innovative use of AI technology.
+2. Show potential impact on the Bangalore community.
+3. Provide feasibility of implementation in Bangalore.
+4. Display scalability of the solution.
+5. Submit a clear and concise project proposal outlining the problem, solution, and implementation plan.
+6. Prototypes should be functional with relevant source code, datasets, and documentation.
+7. Solutions should be accompanied by a brief report outlining the application's impact, feasibility, and scalability.
+
+**Microtasks:**
+
+1. **Reading Instruction:** Start by understanding the challenges faced in the public sectors of Bangalore. Study the provided resources.
+
+2. **Ask a Question:** Identify a specific problem in the public sectors that can be solved using AI. Explain why it is significant.
+
+3. **Upload File:** Upload a detailed project proposal outlining your identified problem, proposed AI solution, and plan of implementation.
+
+4. **Ask a Question:** Describe how your solution is innovative, feasible, and scalable.
+
+5. **Upload File:** Upload the source code, datasets, and any other relevant files for your prototype.
+
+6. **Ask a Question:** Write a brief report outlining your prototype's potential impact on the community, its feasibility, and scalability.
+
+Remember to engage with local stakeholders such as government bodies, local businesses, educational institutions, and tech communities for support and resources. Promote your bounty through social media campaigns, press releases, partnerships, events, and a dedicated website or platform.
 
 
 ==================================================
@@ -35,65 +47,73 @@ The bounty includes a $10 reward for each verified existing system, and particip
 === FULL CONVERSATION ===
 
 USER:
-Create a bounty for rainwater harvesting in Bangalore.
+I want to create a bounty for prototyping AI apps for public goods use cases in Bangalore.
+
 
 ASSISTANT:
-Creating a decentralized bounty for rainwater harvesting in Bangalore is an excellent initiative to promote sustainable water management in the city. Let's break down the process into actionable steps to develop an effective bounty program. 
+Creating a bounty for prototyping AI applications aimed at public goods use cases is a fantastic initiative. Let's break down the process into actionable steps to get started:
 
 ### Step 1: Define the Objective
-The first step is to clearly define the objective of your bounty. In this case, it might be to increase the adoption of rainwater harvesting systems in residential and commercial buildings in Bangalore.
+Clearly outline the purpose of the bounty, which in this case is to encourage the development of AI applications that serve public goods in Bangalore. Public goods generally refer to services or products that benefit all members of a community, such as clean air, public education, or infrastructure.
 
 **Example Objective:** 
-"To install 100 rainwater harvesting systems in residential and commercial properties in Bangalore by the end of the year."
+"To develop innovative AI solutions that address environmental sustainability, urban planning, or public health challenges in Bangalore."
 
-### Step 2: Identify the Target Audience
-Determine who will participate in the bounty. This could include local residents, building owners, or companies specializing in rainwater harvesting solutions.
+### Step 2: Identify Specific Use Cases
+Narrow down the broad category of public goods to specific use cases that are relevant and impactful in Bangalore. This will help participants focus their efforts and increase the feasibility of the solutions.
 
-**Example Target Audience:**
-- Homeowners in Bangalore
-- Property management companies
-- Local water conservation NGOs
+**Example Use Cases:**
+1. AI-powered pollution monitoring and reporting systems.
+2. AI applications for optimizing public transportation routes.
+3. AI tools for managing waste and recycling efficiently.
 
-### Step 3: Establish Reward Mechanisms
-Decide on the type of rewards that will incentivize participation. This could be monetary, recognition, or other forms of incentives.
-
-**Example Rewards:**
-- Monetary rewards for each successfully installed system
-- Certificates of recognition for participants
-- Discount vouchers for water conservation products
-
-### Step 4: Set Participation Criteria
-Outline what participants need to do to qualify for the bounty. This includes installation standards and documentation requirements.
+### Step 3: Establish Criteria and Rewards
+Set clear criteria for evaluating the submissions and decide on the rewards for successful prototypes. Criteria could include innovation, feasibility, impact, scalability, and alignment with the goals.
 
 **Example Criteria:**
-- Installation must comply with local government regulations
-- Provide photographic evidence and installation receipts
-- Systems must have a minimum storage capacity of 1000 liters
+- Innovative use of AI technology.
+- Potential impact on the community.
+- Feasibility of implementation in Bangalore.
+- Scalability of the solution.
 
-Would you like to proceed with these steps, or do you have any specific adjustments in mind?
+**Example Reward Structure:**
+- First Prize: $5,000
+- Second Prize: $3,000
+- Third Prize: $1,000
+
+Would you like guidance on how to engage stakeholders or promote the bounty?
 
 USER:
-$10 reward for existing implementations
+yes
 
 ASSISTANT:
-Incorporating a reward for existing implementations is a great way to acknowledge and encourage those who have already adopted rainwater harvesting. Here's how you can integrate this into your bounty program:
+Engaging stakeholders and promoting the bounty effectively is crucial for its success. Here’s how you can approach these tasks:
 
-### Step 5: Recognize Existing Implementations
+### Step 4: Engage Stakeholders
+Identify and involve key stakeholders who can provide support, resources, or expertise to the bounty initiative. This could include government agencies, local businesses, universities, and tech communities in Bangalore.
 
-1. **Identify the Participants:** 
-   - Open the bounty to homeowners, businesses, and organizations in Bangalore that have already implemented rainwater harvesting systems.
+**Actions to Take:**
+1. **Government and Municipal Bodies:** Partner with local government or municipal bodies to align the bounty with city plans or initiatives. They can provide data access, policy support, or even funding.
+   
+2. **Local Businesses and NGOs:** Collaborate with businesses or NGOs that have a vested interest in public goods. They might offer sponsorships, mentorship, or resources for prototyping.
 
-2. **Verification Process:**
-   - Participants need to submit proof of their existing systems. This could include photographs, installation documents, or a site visit by a designated verifier.
+3. **Educational Institutions:** Engage universities and colleges to tap into student talent. Consider hosting workshops or hackathons in collaboration with institutions.
 
-3. **Reward Distribution:**
-   - Offer a $10 reward for each verified existing system. Ensure that the verification process is straightforward yet thorough to maintain credibility.
+4. **Tech Communities:** Reach out to local tech hubs, incubators, or AI-focused meetups to spread the word and encourage participation.
 
-4. **Promotion and Engagement:**
-   - Use social media and local community platforms to promote this aspect of the bounty. Highlight stories of participants to inspire others.
+### Step 5: Promote the Bounty
+Develop a promotion strategy to reach potential participants and stakeholders effectively.
 
-5. **Feedback and Improvement:**
-   - Gather feedback from participants to refine the bounty and consider future improvements or expansions.
+**Promotional Strategies:**
+1. **Social Media Campaigns:** Use platforms like LinkedIn, Twitter, and Facebook to share details about the bounty, including objectives, criteria, and rewards. 
 
-Would you like more details on any of these steps, or is there anything specific you'd like to modify?
+2. **Press Releases:** Publish press releases in local newspapers and online platforms to reach a broader audience.
+
+3. **Partnerships:** Leverage partnerships with local influencers or organizations to amplify your reach.
+
+4. **Events and Webinars:** Host informational sessions or webinars to explain the bounty, its objectives, and how to participate. 
+
+5. **Dedicated Website or Platform:** Consider setting up a dedicated website or using platforms like Gitcoin or Devpost to manage submissions and updates.
+
+Would you like assistance on any specific stakeholders to engage with or details on how to structure the promotional content?
 

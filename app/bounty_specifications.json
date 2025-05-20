@@ -185,18 +185,5 @@
         "description": "Embed a location/map."
       }
     }
-  },
-  "microtask_placement": {
-    "best_practices": [
-      "READING_INSTRUCTION in the beginning (intro) is nice to have.",
-      "YOUTUBE_LINKS (if instructional) should appear early.",
-      "Have an ASK_A_QUESTION for optional notes/links that appears at the end.",
-      "UPLOAD_FILE should be placed towards the end."
-    ],
-    "recommendations": [
-      "Mix different task types for engagement",
-      "Ensure logical flow between tasks",
-      "Include clear success criteria for each task"
-    ]
   }
 } 
