@@ -1,0 +1,202 @@
+{
+  "version": "1.0",
+  "bounty_metadata": {
+    "title": {
+      "max_length": 40,
+      "description": "Concise, descriptive title for the bounty",
+      "required": true,
+      "type": "string"
+    },
+    "description": {
+      "max_length": 1000,
+      "description": "Bounties are climate-positive tasks. The description should briefly describe what the bounty is about, which will help users on Impact Miner. Bounties can range from providing proof of composting setup at home to building smart contracts that can help fight climate change.",
+      "required": true,
+      "type": "string"
+    },
+    "bounty_type": {
+      "description": "The bounty type hints users on the Impact Miner as to what the bounty is about. Users choose bounties based on their strengths, or as we say 'superpowers'.",
+      "valid_values": [
+        "Harvesting",
+        "GHG Removal",
+        "Recycle",
+        "Restoration",
+        "Survey",
+        "Scouting",
+        "Research",
+        "Learning",
+        "Design",
+        "Code",
+        "Gardening",
+        "Data Science",
+        "Promotion",
+        "Writing",
+        "General",
+        "Volunteer",
+        "Content",
+        "Regeneration",
+        "Training",
+        "Community"
+      ],
+      "required": true,
+      "type": "enum"
+    },
+    "dominant_impact_core": {
+        "description": "There are 4 types of Impact Cores, choose one that the bounty is majorly trying to solve for. Eg: the dominant impact core to map groundwater wells in a specific region would be water",
+        "valid_values": [
+          "Water",
+          "Earth",
+          "Energy",
+          "Social"
+        ],
+        "required": true,
+        "type": "enum"
+      },
+    "bounty_mode": {
+      "description": "Digital Bounties are those bounties which a user can take up from anywhere in the world. Eg: Providing ideas for a community outreach programme. Physical bounties are those which require the user to be at a specific location for them to accept and complete the bounty. Eg: Mapping groundwater wells in a specific region.",
+      "valid_values": [
+        "Digital",
+        "Physical"
+      ],
+      "required": true,
+      "type": "enum"
+    },
+    "max_attempts": {
+      "description": "This determines how many times the same user can attempt the bounty on Impact Miner. It depends on what type of bounty it is. For ex, if a bounty requires the user to submit an essay it could have less number of attempts but a bounty like taking surveys where the user has to collect information multiple times could have more attempts",
+      "required": true,
+      "type": "integer"
+    }
+  },
+  "completion_criteria": {
+    "description": "Criteria that must be met for a bounty submission to be considered complete and valid",
+    "type": "array",
+    "min_items": 1,
+    "items": {
+      "type": "string",
+      "max_length": 200
+    },
+    "default_values": [
+      "Complete all required microtasks; optional ones are clearly marked",
+      "Upload real media with GPS coordinates where applicable (preferable)",
+      "Only one entry per user; re-submissions are not allowed",
+      "All validation is done by Team Atlantis and is final",
+      "Providing fake, reused, or unrelated media not captured by the user may result in blacklisting",
+      "Uploads must be clear, complete, and relevant",
+      "Do not submit dummy data or leave empty fields; only one submission per user is allowed",
+      "Users may use 'skip' and 'back' options to explore the bounty steps but MUST NOT submit unless fully ready",
+      "For help, use the in-app support system"
+    ]
+  },
+  "microtasks": {
+    "description": "List of microtasks required to complete the bounty. At least one is required.",
+    "type": "array",
+    "min_items": 1,
+    "items": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "READING_INSTRUCTION",
+            "GET_LOCATION",
+            "UPLOAD_PHOTO",
+            "UPLOAD_VIDEO",
+            "UPLOAD_FILE",
+            "YOUTUBE_LINKS",
+            "DOWNLOAD_PDF",
+            "ASK_A_QUESTION",
+            "CHOICE_ONE_OPTION",
+            "MULTIPLE_ANSWERS",
+            "QUIZ_QUESTION",
+            "LOCATION_EMBED"
+          ]
+        },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "additional_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["type", "title", "description"]
+    },
+    "microtask_type_definitions": {
+      "READING_INSTRUCTION": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": [],
+        "description": "Instructional text for the user to read."
+      },
+      "GET_LOCATION": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": [],
+        "description": "User provides a location."
+      },
+      "UPLOAD_PHOTO": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": ["MINIMUM_PHOTOS_REQUIRED"],
+        "description": "User uploads one or more photos."
+      },
+      "UPLOAD_VIDEO": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": [],
+        "description": "User uploads a video."
+      },
+      "UPLOAD_FILE": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": ["FILE_FORMAT_GUIDELINE"],
+        "description": "User uploads a file."
+      },
+      "YOUTUBE_LINKS": {
+        "required_fields": ["TITLE", "DESCRIPTION", "YOUTUBE_LINK"],
+        "additional_fields": [],
+        "description": "User provides a YouTube link."
+      },
+      "DOWNLOAD_PDF": {
+        "required_fields": ["TITLE", "DESCRIPTION", "FILE_NAME", "PDF_ATTACHMENT"],
+        "additional_fields": [],
+        "description": "User downloads a PDF."
+      },
+      "ASK_A_QUESTION": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": ["HINT_IN_INPUT_BOX"],
+        "description": "User answers a question."
+      },
+      "CHOICE_ONE_OPTION": {
+        "required_fields": ["TITLE", "DESCRIPTION", "ANSWER_OPTIONS"],
+        "additional_fields": [],
+        "description": "User selects one option."
+      },
+      "MULTIPLE_ANSWERS": {
+        "required_fields": ["TITLE", "DESCRIPTION", "ANSWER_OPTIONS"],
+        "additional_fields": ["PREFERRED_ANSWERS"],
+        "description": "User selects multiple answers."
+      },
+      "QUIZ_QUESTION": {
+        "required_fields": ["TITLE", "DESCRIPTION", "ANSWER_OPTIONS", "CORRECT_ANSWER"],
+        "additional_fields": [],
+        "description": "User answers a quiz question."
+      },
+      "LOCATION_EMBED": {
+        "required_fields": ["TITLE", "DESCRIPTION"],
+        "additional_fields": [],
+        "description": "Embed a location/map."
+      }
+    }
+  },
+  "microtask_placement": {
+    "best_practices": [
+      "READING_INSTRUCTION in the beginning (intro) is nice to have.",
+      "YOUTUBE_LINKS (if instructional) should appear early.",
+      "Have an ASK_A_QUESTION for optional notes/links that appears at the end.",
+      "UPLOAD_FILE should be placed towards the end."
+    ],
+    "recommendations": [
+      "Mix different task types for engagement",
+      "Ensure logical flow between tasks",
+      "Include clear success criteria for each task"
+    ]
+  }
+} 
