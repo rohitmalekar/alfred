@@ -5,37 +5,50 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 import os
+import json
 from langchain_community.tools.tavily_search import TavilySearchResults
+
+def load_bounty_specifications():
+    """Load bounty specifications from JSON file"""
+    with open("app/bounty_specifications.json", "r") as f:
+        return json.load(f)
 
 def generate_chat_summary(messages):
     """Generate structured bounty specification from chat history"""
     llm = ChatOpenAI(model="gpt-4")
+    specs = load_bounty_specifications()
     
-    system_message = SystemMessage(content="""
-    You are a bounty specification generator. Analyze the conversation history and create a structured bounty specification with the following components:
-    1. Bounty Title (max 40 characters)
-    2. Bounty Description (max 1000 characters)
-    3. Criteria List (each max 200 characters)
-       - Eligibility criteria
-       - Evaluation criteria
-       - Terms and conditions
-       - Disclaimers
-    4. Microtasks List - Break down the bounty into specific tasks, including:
-       - Instruction tasks (reading materials, guidelines)
-       - Action tasks (implementations, uploads)
-       - Verification tasks (proof of work, impact data)
-        Design the most relevant microtasks in the context of the conversation history using the following microtask types. Choose the most relevant microtask types for the bounty. You may repeat microtasks if needed.
-        - Ask a question (Create title, question, and answer hint)
-        - Upload a file (Create title, description)
-        - Upload photos (Create title, description)
-        - Upload video (Create title, description)
-        - Quiz Question (Create title, question, and four answer options)
-        - Get Location (Create title, description)
-        - Location embed (Create title, description, city)
-        - Youtube link (Create title, description, link)
-        - Read instructions (Create title, instructional text)
-    5. List key points for successful operation of the bounty for the bounty creator covering crucial details during planning, execution, and verification.
-    Format the output in a clear, structured way using markdown.
+    system_message = SystemMessage(content=f"""
+    You are an expert bounty specification generator specializing in climate and sustainability initiatives. Your role is to analyze conversations and create structured, impactful bounty specifications that drive real environmental change.
+    
+    Follow these specifications exactly:
+    {json.dumps(specs, indent=2)}
+    
+    When designing bounties, ensure they are:
+    1. Well-defined: Clear objectives, outcomes, and scope
+    2. Time-bound: Specific deadlines and milestones
+    3. Practical: Achievable within local constraints and resources
+    4. Measurable: Quantifiable success metrics and verification methods
+    5. Engaging: Motivating for participants with appropriate incentives
+    6. Impactful: Aligned with broader climate goals and local community needs
+    
+    For microtasks, follow these best practices:
+    1. Start with READING_INSTRUCTION to provide context and knowledge
+    2. Include YOUTUBE_LINKS early if providing instructional content
+    3. Design a logical flow of tasks that build upon each other
+    4. Mix different task types to maintain engagement
+    5. Include clear success criteria for each task
+    6. End with optional ASK_A_QUESTION for additional notes/links
+    7. Place UPLOAD_FILE tasks towards the end
+    
+    Consider these critical questions when designing microtasks:
+    - Are the tasks broken down into achievable steps?
+    - Do they account for local context and constraints?
+    - Are verification methods clear and practical?
+    - Do they encourage meaningful participation?
+    - Are they adaptable to uncertainties?
+    
+    Format the output in a clear, structured way using markdown syntax.
     """)
     
     # Prepare the conversation history
@@ -100,14 +113,14 @@ config = {"configurable": {"thread_id": "abc123"}}
 st.title("Welcome to Alfred by Atlantis 🔱")
 
 st.markdown("""
-**Alfred** is your personal AI-powered assistant, designed to help you create impactful bounties in climate and sustainability. Whether you’re championing clean water initiatives, renewable energy projects, or waste management solutions, Alfred transforms your ideas into actionable plans that drive meaningful change.
+**Alfred** is your personal AI-powered assistant, designed to help you create impactful bounties in climate and sustainability. Whether you're championing clean water initiatives, renewable energy projects, or waste management solutions, Alfred transforms your ideas into actionable plans that drive meaningful change.
 """)
 
 st.markdown("""
 ### How to Get Started 🚀
 1. **Share Your Idea**: Start by telling Alfred about the bounty you have in mind. Provide as much detail as possible—your goals, target audience, and any specific requirements or constraints. The more context you give, the better Alfred can assist.
 2. **Ask for Help**: Use Alfred to ask questions, brainstorm ideas, or get feedback on specific aspects of your bounty. Whether you need advice or creative input, Alfred is here to collaborate.
-3. **Refine and Finalize**: Once you’re satisfied with your bounty, click the **"Create Bounty Specifications"** button. Alfred will generate a clear and concise specification based on your conversation history.
+3. **Refine and Finalize**: Once you're satisfied with your bounty, click the **"Create Bounty Specifications"** button. Alfred will generate a clear and concise specification based on your conversation history.
 
 ### Launch Your Impact 🌱
 Take your refined bounty and share it on platforms like [Atlantis Impact Foundry](https://impactfoundry.atlantisp2p.com/) or other bounty tools. 
