@@ -48,7 +48,7 @@ def generate_chat_summary(messages):
     - Do they encourage meaningful participation?
     - Are they adaptable to uncertainties?
     
-    Format the output in a clear, structured way using markdown syntax.
+    Do not output in JSON format. Format the output in a clear, structured way using markdown syntax.
     """)
     
     # Prepare the conversation history
