@@ -1,45 +1,62 @@
 === CONVERSATION SUMMARY ===
 
-Based on your conversation, here is the bounty specification:
+Based on the details shared, here's a potential bounty specification:
 
-**Title:** "Prototyping AI Apps for Public Goods in Bangalore"
+---
 
-**Description:** 
-This bounty calls for developers, data scientists, and innovators to prototype AI applications that serve public goods in Bangalore. The objective is to encourage the development of solutions addressing challenges such as environmental sustainability, urban planning, or public health. Examples of use cases include AI-powered pollution monitoring, optimizing public transportation routes, or managing waste and recycling efficiently. 
+**Bounty Metadata**
 
-**Bounty Type:** "Code"
+**Title**: Designing Low-Cost, Flood-Resistant Housing Solutions
 
-**Dominant Impact Core:** "Social"
+**Description**: A bounty aimed at encouraging the development of innovative, low-cost, and flood-resistant housing solutions for vulnerable communities. Participants will submit design proposals that consider local environmental conditions, materials, and community needs. This bounty is open to architects, civil engineers, and university students in related fields.
 
-**Bounty Mode:** "Digital"
+**Bounty Type**: Design
 
-**Max Attempts:** 3
+**Dominant Impact Core**: Earth
 
-**Completion Criteria:**
+**Bounty Mode**: Digital
 
-1. Demonstrate innovative use of AI technology.
-2. Show potential impact on the Bangalore community.
-3. Provide feasibility of implementation in Bangalore.
-4. Display scalability of the solution.
-5. Submit a clear and concise project proposal outlining the problem, solution, and implementation plan.
-6. Prototypes should be functional with relevant source code, datasets, and documentation.
-7. Solutions should be accompanied by a brief report outlining the application's impact, feasibility, and scalability.
+**Max Attempts**: 3
 
-**Microtasks:**
+---
 
-1. **Reading Instruction:** Start by understanding the challenges faced in the public sectors of Bangalore. Study the provided resources.
+**Completion Criteria**
 
-2. **Ask a Question:** Identify a specific problem in the public sectors that can be solved using AI. Explain why it is significant.
+1. Complete all required microtasks; optional ones are clearly marked.
+2. Upload real media with GPS coordinates where applicable (preferable).
+3. Only one entry per team; re-submissions are allowed only for iterations on the same design.
+4. All validation is done by a panel of experts and is final.
+5. Providing fake, reused, or unrelated media not captured by the user may result in disqualification.
+6. Uploads must be clear, complete, and relevant.
+7. Do not submit dummy data or leave empty fields; only one submission per team is allowed.
+8. Users may use 'skip' and 'back' options to explore the bounty steps but MUST NOT submit unless fully ready.
+9. For help, use the in-app support system.
 
-3. **Upload File:** Upload a detailed project proposal outlining your identified problem, proposed AI solution, and plan of implementation.
+---
 
-4. **Ask a Question:** Describe how your solution is innovative, feasible, and scalable.
+**Microtasks**
 
-5. **Upload File:** Upload the source code, datasets, and any other relevant files for your prototype.
+1. Microtask Type: READING_INSTRUCTION
+   - Title: Understanding the Challenge
+   - Description: Detailed explanation of the bounty, its objectives, and the impact it aims to have.
 
-6. **Ask a Question:** Write a brief report outlining your prototype's potential impact on the community, its feasibility, and scalability.
+2. Microtask Type: ASK_A_QUESTION
+   - Title: Design Proposal
+   - Description: Share your initial design proposal. Include sketches, design principles, materials to be used, and how it accounts for local environmental conditions and community needs.
 
-Remember to engage with local stakeholders such as government bodies, local businesses, educational institutions, and tech communities for support and resources. Promote your bounty through social media campaigns, press releases, partnerships, events, and a dedicated website or platform.
+3. Microtask Type: UPLOAD_FILE
+   - Title: Detailed Design Submission
+   - Description: Upload a detailed design document, including blueprints, cost estimates, and implementation steps.
+
+4. Microtask Type: ASK_A_QUESTION
+   - Title: Final Notes
+   - Description: Any additional notes, considerations or relevant links supporting your design.
+
+5. Microtask Type: UPLOAD_FILE
+   - Title: Team Details
+   - Description: Upload a file with your team details including names, roles, and contact information.
+
+Remember, the bounty and its microtasks should be well-defined, time-bound, practical, measurable, engaging, and impactful. It should also consider local context and constraints, have clear verification methods, encourage meaningful participation, and be adaptable to uncertainties.
 
 
 ==================================================
@@ -47,73 +64,32 @@ Remember to engage with local stakeholders such as government bodies, local busi
 === FULL CONVERSATION ===
 
 USER:
-I want to create a bounty for prototyping AI apps for public goods use cases in Bangalore.
-
+bounty for flodding
 
 ASSISTANT:
-Creating a bounty for prototyping AI applications aimed at public goods use cases is a fantastic initiative. Let's break down the process into actionable steps to get started:
+To create an effective decentralized bounty program aimed at addressing flooding, we should focus on initiatives that can mitigate its impact or help communities prepare and respond effectively. Let's break this down into manageable steps, starting with Step 1:
 
 ### Step 1: Define the Objective
-Clearly outline the purpose of the bounty, which in this case is to encourage the development of AI applications that serve public goods in Bangalore. Public goods generally refer to services or products that benefit all members of a community, such as clean air, public education, or infrastructure.
 
-**Example Objective:** 
-"To develop innovative AI solutions that address environmental sustainability, urban planning, or public health challenges in Bangalore."
+**Objective**: Clearly define what you want to achieve with the bounty. This could be anything from developing flood prediction models, designing flood-resistant infrastructure, creating community awareness programs, or innovating new flood management technologies.
 
-### Step 2: Identify Specific Use Cases
-Narrow down the broad category of public goods to specific use cases that are relevant and impactful in Bangalore. This will help participants focus their efforts and increase the feasibility of the solutions.
+**Example**: Suppose your objective is to encourage the development of low-cost, flood-resistant housing solutions for vulnerable communities.
 
-**Example Use Cases:**
-1. AI-powered pollution monitoring and reporting systems.
-2. AI applications for optimizing public transportation routes.
-3. AI tools for managing waste and recycling efficiently.
-
-### Step 3: Establish Criteria and Rewards
-Set clear criteria for evaluating the submissions and decide on the rewards for successful prototypes. Criteria could include innovation, feasibility, impact, scalability, and alignment with the goals.
-
-**Example Criteria:**
-- Innovative use of AI technology.
-- Potential impact on the community.
-- Feasibility of implementation in Bangalore.
-- Scalability of the solution.
-
-**Example Reward Structure:**
-- First Prize: $5,000
-- Second Prize: $3,000
-- Third Prize: $1,000
-
-Would you like guidance on how to engage stakeholders or promote the bounty?
+Once you have a clear objective, we can move to Step 2, which involves identifying participants and stakeholders. Would you like to proceed with this, or do you have another objective in mind?
 
 USER:
 yes
 
 ASSISTANT:
-Engaging stakeholders and promoting the bounty effectively is crucial for its success. Here’s how you can approach these tasks:
+Great! Let's move on to Step 2:
 
-### Step 4: Engage Stakeholders
-Identify and involve key stakeholders who can provide support, resources, or expertise to the bounty initiative. This could include government agencies, local businesses, universities, and tech communities in Bangalore.
+### Step 2: Identify Participants and Stakeholders
 
-**Actions to Take:**
-1. **Government and Municipal Bodies:** Partner with local government or municipal bodies to align the bounty with city plans or initiatives. They can provide data access, policy support, or even funding.
-   
-2. **Local Businesses and NGOs:** Collaborate with businesses or NGOs that have a vested interest in public goods. They might offer sponsorships, mentorship, or resources for prototyping.
+**Participants**: Determine who can participate in the bounty. Consider including a diverse group of individuals or teams, such as engineers, architects, community members, environmental scientists, and even students.
 
-3. **Educational Institutions:** Engage universities and colleges to tap into student talent. Consider hosting workshops or hackathons in collaboration with institutions.
+**Stakeholders**: Identify who will be involved in supporting or benefiting from the initiative. This could include local governments, NGOs, community leaders, and potential investors or sponsors.
 
-4. **Tech Communities:** Reach out to local tech hubs, incubators, or AI-focused meetups to spread the word and encourage participation.
+**Example**: For the flood-resistant housing solutions, participants could be architects, civil engineers, and university students in related fields. Stakeholders might include local housing authorities, NGOs focused on disaster relief, and construction companies interested in sustainable building practices.
 
-### Step 5: Promote the Bounty
-Develop a promotion strategy to reach potential participants and stakeholders effectively.
-
-**Promotional Strategies:**
-1. **Social Media Campaigns:** Use platforms like LinkedIn, Twitter, and Facebook to share details about the bounty, including objectives, criteria, and rewards. 
-
-2. **Press Releases:** Publish press releases in local newspapers and online platforms to reach a broader audience.
-
-3. **Partnerships:** Leverage partnerships with local influencers or organizations to amplify your reach.
-
-4. **Events and Webinars:** Host informational sessions or webinars to explain the bounty, its objectives, and how to participate. 
-
-5. **Dedicated Website or Platform:** Consider setting up a dedicated website or using platforms like Gitcoin or Devpost to manage submissions and updates.
-
-Would you like assistance on any specific stakeholders to engage with or details on how to structure the promotional content?
+With participants and stakeholders in mind, we can proceed to Step 3, which involves setting up the bounty reward structure. Are you ready to move forward with this step, or do you have any questions so far?
 
